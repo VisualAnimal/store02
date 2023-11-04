@@ -146,4 +146,78 @@ export const lists: Lists = {
       posts: relationship({ ref: 'Post.tags', many: true }),
     },
   }),
+
+  // brand
+  Brand: list({
+    access: allowAll,
+    fields: {
+      name: text(),
+      models: relationship({ ref: 'Model.brand', many: true }),
+      products: relationship({ ref: 'Product.brand', many: true }),
+      updateAt: timestamp(),
+    }
+  }),
+
+  // model
+  Model: list({
+    access: allowAll,
+    fields: {
+      name: text(),
+      brand: relationship({ ref: 'Brand.models' }),
+      capacities: relationship({ ref: 'Capacity.model', many: true }),
+      colors: relationship({ ref: 'Color.model', many: true }),
+      versions: relationship({ ref: 'Version.model', many: true }),
+      products: relationship({ ref: 'Product.model', many: true }),
+      updateAt: timestamp()
+    }
+  }),
+
+  // capacity
+  Capacity: list({
+    access: allowAll,
+    fields: {
+      name: text(),
+      model: relationship({ ref: 'Model.capacities' }),
+      products: relationship({ ref: 'Product.capacity', many: true }),
+      updateAt: timestamp()
+    }
+  }),
+
+  // color
+  Color: list({
+    access: allowAll,
+    fields: {
+      name: text(),
+      model: relationship({ ref: 'Model.colors' }),
+      products: relationship({ ref: 'Product.color', many: true }),
+      updateAt: timestamp()
+    }
+  }),
+
+  // version
+  Version: list({
+    access: allowAll,
+    fields: {
+      name: text(),
+      model: relationship({ ref: 'Model.versions' }),
+      products: relationship({ ref: 'Product.version', many: true }),
+      updateAt: timestamp()
+    }
+  }),
+
+  // product
+  Product: list({
+    access: allowAll,
+    fields: {
+      price: text(),
+      brand: relationship({ ref: 'Brand.products' }),
+      model: relationship({ ref: 'Model.products' }),
+      capacity: relationship({ ref: 'Capacity.products' }),
+      color: relationship({ ref: 'Color.products' }),
+      version: relationship({ ref: 'Version.products' }),
+      name: text(),
+      description: text(),
+      updateAt: timestamp()
+    }
+  })
 };
