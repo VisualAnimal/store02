@@ -537,7 +537,6 @@ type Color {
   productsCount(where: ProductWhereInput! = {}): Int
   updateAt: DateTime
   picture: String
-  img: String
 }
 
 input ColorWhereUniqueInput {
@@ -554,7 +553,6 @@ input ColorWhereInput {
   products: ProductManyRelationFilter
   updateAt: DateTimeNullableFilter
   picture: StringFilter
-  img: StringFilter
 }
 
 input ColorOrderByInput {
@@ -562,7 +560,6 @@ input ColorOrderByInput {
   name: OrderDirection
   updateAt: OrderDirection
   picture: OrderDirection
-  img: OrderDirection
 }
 
 input ColorUpdateInput {
@@ -571,7 +568,6 @@ input ColorUpdateInput {
   products: ProductRelateToManyForUpdateInput
   updateAt: DateTime
   picture: String
-  img: String
 }
 
 input ColorUpdateArgs {
@@ -585,7 +581,6 @@ input ColorCreateInput {
   products: ProductRelateToManyForCreateInput
   updateAt: DateTime
   picture: String
-  img: String
 }
 
 type Version {

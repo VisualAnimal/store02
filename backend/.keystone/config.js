@@ -174,8 +174,7 @@ var lists = {
       model: (0, import_fields.relationship)({ ref: "Model.colors" }),
       products: (0, import_fields.relationship)({ ref: "Product.color", many: true }),
       updateAt: (0, import_fields.timestamp)(),
-      picture: (0, import_fields.text)(),
-      img: (0, import_fields.text)({ defaultValue: "" })
+      picture: (0, import_fields.text)()
     }
   }),
   // version

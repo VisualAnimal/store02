@@ -78,7 +78,6 @@ model Color {
   products Product[] @relation("Product_color")
   updateAt DateTime?
   picture  String    @default("")
-  img      String    @default("")
 
   @@index([modelId])
 }
