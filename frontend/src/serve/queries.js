@@ -27,6 +27,11 @@ export const GET_ATTRIBUTE = gql`
 `
 
 // 品牌
+export const GET_BRANDS = gql`
+    query GetBrands{
+        brands{id name}
+    }
+`
 export const GET_BRAND_AND_PRODUCT = gql`
     query GetBrandAndProduct{
         brands{
@@ -151,6 +156,20 @@ export const ADD_PRODUCT = gql`
         }){
             id
             name
+        }
+    }
+`
+
+export const GET_PRODUCTS_BY_BRAND = gql`
+    query GetProducts($brand: ID){
+        products(where: {brand: {id: {equals: $brand}}}){
+            id
+            brand{id name}
+            model{id name}
+            capacity{id name}
+            color{id name}
+            version{id name}
+            price
         }
     }
 `
