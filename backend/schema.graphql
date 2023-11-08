@@ -536,6 +536,8 @@ type Color {
   products(where: ProductWhereInput! = {}, orderBy: [ProductOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: ProductWhereUniqueInput): [Product!]
   productsCount(where: ProductWhereInput! = {}): Int
   updateAt: DateTime
+  picture: String
+  img: String
 }
 
 input ColorWhereUniqueInput {
@@ -551,12 +553,16 @@ input ColorWhereInput {
   model: ModelWhereInput
   products: ProductManyRelationFilter
   updateAt: DateTimeNullableFilter
+  picture: StringFilter
+  img: StringFilter
 }
 
 input ColorOrderByInput {
   id: OrderDirection
   name: OrderDirection
   updateAt: OrderDirection
+  picture: OrderDirection
+  img: OrderDirection
 }
 
 input ColorUpdateInput {
@@ -564,6 +570,8 @@ input ColorUpdateInput {
   model: ModelRelateToOneForUpdateInput
   products: ProductRelateToManyForUpdateInput
   updateAt: DateTime
+  picture: String
+  img: String
 }
 
 input ColorUpdateArgs {
@@ -576,6 +584,8 @@ input ColorCreateInput {
   model: ModelRelateToOneForCreateInput
   products: ProductRelateToManyForCreateInput
   updateAt: DateTime
+  picture: String
+  img: String
 }
 
 type Version {

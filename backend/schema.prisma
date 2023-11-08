@@ -77,6 +77,8 @@ model Color {
   modelId  String?   @map("model")
   products Product[] @relation("Product_color")
   updateAt DateTime?
+  picture  String    @default("")
+  img      String    @default("")
 
   @@index([modelId])
 }
