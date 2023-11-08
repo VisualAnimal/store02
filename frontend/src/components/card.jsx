@@ -31,7 +31,7 @@ export function Card({ props }) {
                             price={parseInt(product.price) + 100}
                             desc="描述信息"
                             title={`${product.model.name} ${product.capacity.name} ${product.color.name} ${product.version.name}`}
-                            thumb="https://img.yzcdn.cn/vant/ipad.jpeg"
+                            thumb={product.color.picture ? product.color.picture : "https://img.yzcdn.cn/vant/ipad.jpeg"}
                         />
                     ))
                 ) : (

@@ -167,7 +167,7 @@ export const GET_PRODUCTS_BY_BRAND = gql`
             brand{id name}
             model{id name}
             capacity{id name}
-            color{id name}
+            color{id name picture}
             version{id name}
             price
         }
