@@ -22,7 +22,7 @@ export function Card({ props }) {
 
     return (
         <Container>{
-            loading ? (<Skeleton rowHeight={80} row={10} title />) : (
+            loading ? (<div></div>) : (
                 data.products.length ? (
                     data.products.map(product => (
                         <ProductCard
