@@ -190,7 +190,8 @@ export const lists: Lists = {
       name: text(),
       model: relationship({ ref: 'Model.colors' }),
       products: relationship({ ref: 'Product.color', many: true }),
-      updateAt: timestamp()
+      updateAt: timestamp(),
+      picture: text()
     }
   }),
 
