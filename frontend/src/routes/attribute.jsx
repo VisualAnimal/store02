@@ -1,5 +1,22 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { ADD_BRAND, ADD_CAPACITY, ADD_COLOR, ADD_MODEL, ADD_VERSION, GET_ATTRIBUTE, UPDATE_BRAND, UPDATE_CAPACITY, UPDATE_COLOR, UPDATE_MODEL, UPDATE_VERSION } from "../serve/queries";
+import { styled } from 'styled-components'
+
+const Container = styled.div`
+    font-size: 12px;
+    .model{
+        margin-left: 25px;
+        .color{
+        margin-left: 25px;
+        }
+        .capacity{
+            margin-left: 25px;
+        }
+        .version{
+            margin-left: 25px;
+        }
+    }
+`
 
 export default function Attribute() {
     const { loading, error, data } = useQuery(GET_ATTRIBUTE)
@@ -193,41 +210,49 @@ export default function Attribute() {
     console.log(data.brands);
 
     return (
-        <div>
-            <button onClick={handleAddBrand}>新增品牌</button>
-            <ul>{
-                data.brands.map(brand => (
-                    <li onClick={(e) => { handleUpdateBrand(brand), e.stopPropagation() }} key={brand.id}>{brand.name}{' '}
-                        <button onClick={(e) => { handleAddModel(brand.id), e.stopPropagation() }}>增加型号</button>
-                        <ul>{brand.models.map(model => (
-                            <li onClick={(e) => { handleUpdateModel(model), e.stopPropagation() }} key={model.id}>{model.name}
-                                <span onClick={(e) => e.stopPropagation()}>容量：</span>
-                                {model.capacities.length ? (
-                                    model.capacities.map(capacity => (
-                                        <span onClick={(e) => { handleUpdateCapacity(capacity), e.stopPropagation() }} style={{ backgroundColor: "gold", marginRight: 5 }} key={capacity.id}>{capacity.name}</span>
-                                    ))
-                                ) : '空'}
-                                <button onClick={(e) => { handleAddCapacity(model.id), e.stopPropagation() }}>+</button>
-                                <span onClick={(e) => e.stopPropagation()}>颜色：</span>
-                                {model.colors.length ? (
-                                    model.colors.map(color => (
-                                        <span onClick={(e) => { handleUpdateColor(color), e.stopPropagation() }} style={{ backgroundColor: "gold", marginRight: 5 }} key={color.id}>{color.name}</span>
-                                    ))
-                                ) : '空'}
-                                <button onClick={(e) => { handleAddColor(model.id), e.stopPropagation() }}>+</button>
-                                <span onClick={(e) => e.stopPropagation()}>版本：</span>
-                                {model.versions.length ? (
-                                    model.versions.map(version => (
-                                        <span onClick={(e) => { handleUpdateVersion(version), e.stopPropagation() }} style={{ backgroundColor: "gold", marginRight: 5 }} key={version.id}>{version.name}</span>
-                                    ))
-                                ) : '空'}
-                                <button onClick={(e) => { handleAddVersion(model.id), e.stopPropagation() }}>+</button>
-                            </li>
+        <Container>
+            <div>
+                <button onClick={handleAddBrand}>新增品牌</button>
+                <div>
+                    {
+                        data.brands.map(brand => (
+                            <div onClick={(e) => { handleUpdateBrand(brand), e.stopPropagation() }} key={brand.id}>{brand.name}{' '}
+                                <button onClick={(e) => { handleAddModel(brand.id), e.stopPropagation() }}>增加型号</button>
+                                <div className="model">{brand.models.map(model => (
+                                    <div onClick={(e) => { handleUpdateModel(model), e.stopPropagation() }} key={model.id}>{model.name}
+                                        <div className="capacity"><span onClick={(e) => e.stopPropagation()}>容量：</span>
+                                            {model.capacities.length ? (
+                                                model.capacities.map(capacity => (
+                                                    <span onClick={(e) => { handleUpdateCapacity(capacity), e.stopPropagation() }} style={{ backgroundColor: "gold", marginRight: 5 }} key={capacity.id}>{capacity.name}</span>
+                                                ))
+                                            ) : '空'}
+                                            <button onClick={(e) => { handleAddCapacity(model.id), e.stopPropagation() }}>+</button>
+                                        </div>
+                                        <div className="color">
+                                            <span onClick={(e) => e.stopPropagation()}>颜色：</span>
+                                            {model.colors.length ? (
+                                                model.colors.map(color => (
+                                                    <span onClick={(e) => { handleUpdateColor(color), e.stopPropagation() }} style={{ backgroundColor: "gold", marginRight: 5 }} key={color.id}>{color.name}</span>
+                                                ))
+                                            ) : '空'}
+                                            <button onClick={(e) => { handleAddColor(model.id), e.stopPropagation() }}>+</button>
+                                        </div>
+                                        <div className="version">
+                                            <span onClick={(e) => e.stopPropagation()}>版本：</span>
+                                            {model.versions.length ? (
+                                                model.versions.map(version => (
+                                                    <span onClick={(e) => { handleUpdateVersion(version), e.stopPropagation() }} style={{ backgroundColor: "gold", marginRight: 5 }} key={version.id}>{version.name}</span>
+                                                ))
+                                            ) : '空'}
+                                            <button onClick={(e) => { handleAddVersion(model.id), e.stopPropagation() }}>+</button>
+                                        </div>
+                                    </div>
+                                ))}
+                                </div>
+                            </div>
                         ))}
-                        </ul>
-                    </li>
-                ))}
-            </ul>
-        </div>
+                </div>
+            </div>
+        </Container>
     )
 }
