@@ -192,6 +192,7 @@ export const lists: Lists = {
       products: relationship({ ref: 'Product.color', many: true }),
       updateAt: timestamp(),
       picture: text(),
+      img:text()
     }
   }),
 
