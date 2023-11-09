@@ -191,9 +191,7 @@ export const lists: Lists = {
       model: relationship({ ref: 'Model.colors' }),
       products: relationship({ ref: 'Product.color', many: true }),
       updateAt: timestamp(),
-      picture: text(),
-      img: text(),
-      test: text()
+      picture: text()
     }
   }),
 
