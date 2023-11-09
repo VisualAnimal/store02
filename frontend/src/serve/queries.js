@@ -86,6 +86,15 @@ export const UPDATE_MODEL = gql`
     }
 `
 
+export const GET_MODELS_BY_BRAND = gql`
+    query GetModelsByBrand($brand:ID){
+        models(where: {brand: {id: {equals: $brand}}}){
+            id
+            name
+        }
+    }
+`
+
 // 容量
 export const ADD_CAPACITY = gql`
     mutation CreateCapacity($name: String, $model: ID){
@@ -163,6 +172,23 @@ export const ADD_PRODUCT = gql`
 export const GET_PRODUCTS_BY_BRAND = gql`
     query GetProducts($brand: ID){
         products(where: {brand: {id: {equals: $brand}}}){
+            id
+            brand{id name}
+            model{id name}
+            capacity{id name}
+            color{id name picture}
+            version{id name}
+            price
+        }
+    }
+`
+
+export const GET_PRODUCTS_BY_BRAND_AND_MODEL = gql`
+    query GetProducts($brand: ID, $model:ID){
+        products(where: {
+            brand: {id: {equals: $brand}}
+            model: {id: {equals: $model}}
+        }){
             id
             brand{id name}
             model{id name}

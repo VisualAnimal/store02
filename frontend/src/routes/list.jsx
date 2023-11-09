@@ -8,6 +8,7 @@ import { Menu } from "../components/menu";
 import { styled } from 'styled-components'
 import { Card } from "../components/card";
 import { Header } from "../components/header";
+import { FilterBar } from "../components/filterBar";
 
 
 const Container = styled.div`
@@ -32,6 +33,8 @@ const Right = styled.div`
 export default function List() {
     const { loading, error, data } = useQuery(GET_BRAND_AND_PRODUCT)
     const [brand, setBrand] = useState(0)
+    const [model, setModel] = useState('')
+    // console.log(model);
 
     // if (loading) return <p>Loading...</p>;
     // if (error) return <p>Error : {error.message}</p>;
@@ -40,6 +43,10 @@ export default function List() {
     const getMenuChecked = (val) => {
         // console.log(val);
         setBrand(val)
+    }
+
+    const modelSelect = (model) => {
+        console.log(model);
     }
     return (
         <Container>
@@ -56,7 +63,10 @@ export default function List() {
                 </Left>
                 <Right>
                     {loading ? (<Skeleton row={10} rowHeight={80} />) : (
-                        <Card props={data.brands[brand]}></Card>
+                        <div>
+                            <FilterBar props={{brand: data.brands[brand], setModel}}></FilterBar>
+                            <Card props={{brand:data.brands[brand], model}}></Card>
+                        </div>
                     )}
                 </Right>
                 {/* <ul>{data.brands.map(brand => (
