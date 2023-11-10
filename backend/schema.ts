@@ -216,7 +216,7 @@ export const lists: Lists = {
   Product: list({
     access: allowAll,
     fields: {
-      price: text(),
+      price: integer(),
       brand: relationship({ ref: 'Brand.products' }),
       model: relationship({ ref: 'Model.products' }),
       capacity: relationship({ ref: 'Capacity.products' }),
