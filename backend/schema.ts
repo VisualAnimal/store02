@@ -16,6 +16,7 @@ import {
   password,
   timestamp,
   select,
+  integer
 } from '@keystone-6/core/fields';
 
 // the document field is a more complicated field, so it has it's own package
@@ -155,6 +156,7 @@ export const lists: Lists = {
       models: relationship({ ref: 'Model.brand', many: true }),
       products: relationship({ ref: 'Product.brand', many: true }),
       updateAt: timestamp(),
+      orderNumber: integer()
     }
   }),
 
@@ -168,7 +170,8 @@ export const lists: Lists = {
       colors: relationship({ ref: 'Color.model', many: true }),
       versions: relationship({ ref: 'Version.model', many: true }),
       products: relationship({ ref: 'Product.model', many: true }),
-      updateAt: timestamp()
+      updateAt: timestamp(),
+      orderNumber: integer()
     }
   }),
 
@@ -179,7 +182,8 @@ export const lists: Lists = {
       name: text(),
       model: relationship({ ref: 'Model.capacities' }),
       products: relationship({ ref: 'Product.capacity', many: true }),
-      updateAt: timestamp()
+      updateAt: timestamp(),
+      orderNumber: integer()
     }
   }),
 
@@ -191,7 +195,8 @@ export const lists: Lists = {
       model: relationship({ ref: 'Model.colors' }),
       products: relationship({ ref: 'Product.color', many: true }),
       updateAt: timestamp(),
-      picture: text()
+      picture: text(),
+      orderNumber: integer()
     }
   }),
 
@@ -202,7 +207,8 @@ export const lists: Lists = {
       name: text(),
       model: relationship({ ref: 'Model.versions' }),
       products: relationship({ ref: 'Product.version', many: true }),
-      updateAt: timestamp()
+      updateAt: timestamp(),
+      orderNumber: integer()
     }
   }),
 
@@ -218,7 +224,8 @@ export const lists: Lists = {
       version: relationship({ ref: 'Version.products' }),
       name: text(),
       description: text(),
-      updateAt: timestamp()
+      updateAt: timestamp(),
+      orderNumber: integer()
     }
   })
 };
