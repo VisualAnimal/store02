@@ -12,7 +12,7 @@ export function Menu({props}) {
 
     const [active, setActive] = useState(0);
 
-    console.log(active);
+    // console.log(active);
     return (
         <Wrapper>
             <Sidebar

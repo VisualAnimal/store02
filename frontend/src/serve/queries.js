@@ -27,9 +27,9 @@ export const GET_ATTRIBUTE = gql`
 `
 
 // 品牌
-export const GET_BRANDS = gql`
+export const GET_BRANDS_BY_ORDER_NUMBER_DESC = gql`
     query GetBrands{
-        brands{id name}
+        brands(orderBy: {orderNumber: desc}){id name}
     }
 `
 export const GET_BRAND_AND_PRODUCT = gql`
@@ -169,9 +169,82 @@ export const ADD_PRODUCT = gql`
     }
 `
 
+export const GET_ALL_PRODUCTS_DESC = gql`
+    query GetAllProducts{
+        products(orderBy: {id: desc}){
+            id brand{id name} model{id name} capacity{id name} color{id name picture} version{id name} price
+        }
+    }
+`
+
+export const GET_ALL_PRODUCTS_DESC_AND_PRICE_0_TO_1000 = gql`
+    query Products {
+        products(orderBy: {id: desc} where: { price: { gte:0, lte: 1000 } }) {
+            model{id name}
+            capacity{id name}
+            color{id name picture}
+            version{id name}
+            price
+        }
+    }
+`
+
+export const GET_ALL_PRODUCTS_DESC_AND_PRICE_1000_TO_3000 = gql`
+    query Products {
+        products(orderBy: {id: desc} where: { price: { gte:1000, lte: 3000 } }) {
+            model{id name}
+            capacity{id name}
+            color{id name picture}
+            version{id name}
+            price
+        }
+    }
+`
+
+export const GET_ALL_PRODUCTS_DESC_AND_PRICE_3000_TO_5000 = gql`
+    query Products {
+        products(orderBy: {id: desc} where: { price: { gte:3000, lte: 5000 } }) {
+            model{id name}
+            capacity{id name}
+            color{id name picture}
+            version{id name}
+            price
+        }
+    }
+`
+
+export const GET_ALL_PRODUCTS_DESC_AND_PRICE_5000_PLUS = gql`
+    query Products {
+        products(orderBy: {id: desc} where: { price: { gte:5000 } }) {
+            model{id name}
+            capacity{id name}
+            color{id name picture}
+            version{id name}
+            price
+        }
+    }
+`
+
 export const GET_PRODUCTS_BY_BRAND = gql`
     query GetProducts($brand: ID){
         products(where: {brand: {id: {equals: $brand}}}){
+            id
+            brand{id name}
+            model{id name}
+            capacity{id name}
+            color{id name picture}
+            version{id name}
+            price
+        }
+    }
+`
+
+export const GET_PRODUCTS_BY_BRAND_DESC = gql`
+    query GetProducts($brand: ID){
+        products(
+            where: {brand: {id: {equals: $brand}}}
+            orderBy: {id: desc}
+        ){
             id
             brand{id name}
             model{id name}
@@ -189,6 +262,26 @@ export const GET_PRODUCTS_BY_BRAND_AND_MODEL = gql`
             brand: {id: {equals: $brand}}
             model: {id: {equals: $model}}
         }){
+            id
+            brand{id name}
+            model{id name}
+            capacity{id name}
+            color{id name picture}
+            version{id name}
+            price
+        }
+    }
+`
+
+export const GET_PRODUCTS_BY_BRAND_AND_MODEL_DESC = gql`
+    query GetProducts($brand: ID, $model:ID){
+        products(
+            where: {
+                brand: {id: {equals: $brand}}
+                model: {id: {equals: $model}}
+            }
+            orderBy: {id: desc}
+        ){
             id
             brand{id name}
             model{id name}

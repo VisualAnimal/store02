@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client"
-import { GET_BRAND_AND_PRODUCT } from "../serve/queries";
+import { GET_BRANDS_BY_ORDER_NUMBER_DESC, GET_BRAND_AND_PRODUCT } from "../serve/queries";
 import { Skeleton, Sticky } from 'react-vant';
 import { useState } from "react"
 import { Menu } from "../components/menu";
@@ -7,6 +7,7 @@ import { styled } from 'styled-components'
 import { Card } from "../components/card";
 import { Header } from "../components/header";
 import { FilterBar } from "../components/filterBar";
+import { FilterBarAll } from "../components/filterBarByAll";
 
 
 const Container = styled.div`
@@ -25,13 +26,11 @@ const Right = styled.div`
         width: 77%;
     `
 export default function List() {
-    const { loading, error, data } = useQuery(GET_BRAND_AND_PRODUCT)
+    const { loading, error, data } = useQuery(GET_BRANDS_BY_ORDER_NUMBER_DESC)
     const [brand, setBrand] = useState(0)
     const [model, setModel] = useState('')
+    const [priceRange, setPriceRange] = useState([])
 
-    const modelSelect = (model) => {
-        console.log(model);
-    }
     return (
         <Container>
             <Sticky>
@@ -48,12 +47,16 @@ export default function List() {
                 <Right>
                     {loading ? (<Skeleton row={10} rowHeight={80} />) : (
                         <div>
-                            <FilterBar props={{ brand: data.brands[brand], setModel }}></FilterBar>
-                            <Card props={{ brand: data.brands[brand], model }}></Card>
+                            {brand == 0 ? (
+                                <FilterBarAll props={{brand: data.brands[brand], setPriceRange}} />
+                            ) : (
+                                <FilterBar props={{ brand: data.brands[brand], setModel }}></FilterBar>
+                            )}
+                            <Card props={{priceRange, brand: data.brands[brand], model }}></Card>
                         </div>
                     )}
                 </Right>
             </Wrapper>
-        </Container>
+        </Container >
     )
 }

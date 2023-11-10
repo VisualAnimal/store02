@@ -11,7 +11,6 @@ const Wrapper = styled.div`
     height: 35px;
     align-items: center;
     padding: 0px 10px;
-    /* width: 100%; */
     justify-content: right;
 `
 
@@ -33,11 +32,12 @@ export function FilterBar({ props }) {
     const [model, setModel] = useState('')
 
     // 传入品牌时，先清空已选型号
-    useEffect(()=>{
-        console.log(2);
+    useEffect(() => {
         setModel('')
-        props.setModel('')
-    },[props.brand.id])
+        return () => {
+            props.setModel('')
+        }
+    }, [props.brand.id])
 
     const { id, name } = props.brand
     const { loading, error, data } = useQuery(GET_MODELS_BY_BRAND, {
