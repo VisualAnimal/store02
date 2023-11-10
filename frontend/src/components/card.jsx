@@ -1,6 +1,6 @@
 import { from, useQuery } from '@apollo/client';
 import React from 'react';
-import { ProductCard, Tag, Button, Empty, Skeleton, Cell } from 'react-vant';
+import { ProductCard, Tag, Button, Empty, Skeleton, Cell, Image } from 'react-vant';
 import { GET_PRODUCTS_BY_BRAND, GET_PRODUCTS_BY_BRAND_AND_MODEL } from '../serve/queries';
 import { styled } from 'styled-components'
 
@@ -24,13 +24,17 @@ const Container = styled.div`
         }
     `
 
-    const Row = styled.div`
+const Row = styled.div`
         display: flex;
         border-bottom: 1px solid #f1f1f1;
         justify-content: space-between;
         padding: 5px;
         font-size: medium;
         .left{
+            display: flex;
+            .img{
+                margin-right: 5px;
+            }
             .description{
                 color: #a1a1a1;
                 font-size: small;
@@ -88,18 +92,22 @@ export function Card({ props }) {
                     data.products.map(product => (
                         <Row>
                             <div className="left">
-                                <div className="title">
+                                <div className="img">
+                                    <Image fit='contain' width={40} height={40} src={product.color.picture} />
+                                </div>
+                                <div className="info"><div className="title">
                                     <span className='model'>{product.model.name}</span>
                                     <span className='model'>{product.capacity.name}</span>
                                     <span className='model'>{product.color.name}</span>
                                     <span className='model'></span>
                                 </div>
-                                <div className="description">
-                                    <span>{product.version.name}</span>
+                                    <div className="description">
+                                        <span>{product.version.name}</span>
+                                    </div>
                                 </div>
                             </div>
                             <div className="right">
-                                <span className='price'>{`￥${parseInt(product.price)+100}`}</span>
+                                <span className='price'>{`￥${parseInt(product.price) + 100}`}</span>
                             </div>
                         </Row>
                         // <Cell.Group>
