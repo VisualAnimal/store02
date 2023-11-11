@@ -35,7 +35,7 @@ export default function Product() {
                     capacityId: val[0],
                     colorId: val[1],
                     versionId: val[2],
-                    price
+                    price:parseInt(price)
                 }
             })
         }

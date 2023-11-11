@@ -154,7 +154,7 @@ export const UPDATE_VERSION = gql`
 
 // 商品
 export const ADD_PRODUCT = gql`
-    mutation CreateProduct($brandId: ID, $modelId: ID, $capacityId: ID, $colorId: ID, $versionId: ID, $price: String){
+    mutation CreateProduct($brandId: ID, $modelId: ID, $capacityId: ID, $colorId: ID, $versionId: ID, $price: Int){
         createProduct(data: {
             brand: {connect: {id: $brandId}}, 
             model: {connect: {id: $modelId}}, 

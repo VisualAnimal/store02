@@ -133,7 +133,7 @@ export function Card({ props }) {
                         <Row key={product.id}>
                             <div className="left">
                                 <div className="img">
-                                    <Image fit='contain' width={40} height={40} src={product.color.picture} />
+                                    <Image fit='contain' width={40} height={40} src={product.color.picture?product.color.picture:'https://fastly.jsdelivr.net/npm/@vant/assets/ipad.jpeg'} />
                                 </div>
                                 <div className="info"><div className="title">
                                     <span className='model'>{product.model.name}</span>
